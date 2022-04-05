@@ -3,6 +3,7 @@ import CategoryStore from '../../models/category';
 
 describe('Product model', () => {
     const productStore = new ProductStore();
+    const categoryStore = new CategoryStore();
     describe('Structural tests', () => {
         it('should have index', () => {
             expect(productStore.index).toBeDefined();
@@ -21,22 +22,24 @@ describe('Product model', () => {
         });
     });
     describe('CRUD functional tests', () => {
+        let catId = 0;
         beforeAll(async () => {
-            const categoryStore = new CategoryStore();
             const category = {
                 name: 'Test',
             };
-            categoryStore.create(category);
+            await categoryStore.create(category);
+            const catArray = await categoryStore.index();
+            catId = catArray[catArray.length - 1].id as number;
         });
         afterAll(async () => {
             const categoryStore = new CategoryStore();
-            categoryStore.delete('4');
+            categoryStore.delete(catId.toString());
         });
         it('should add product when call create', async () => {
             const product = {
                 name: 'Test',
                 price: 20,
-                category: 4
+                category: catId
             };
             const result = await productStore.create(product);
             expect(result[0].name).toEqual('Test');
@@ -54,7 +57,7 @@ describe('Product model', () => {
                 id: 2,
                 name: 'Testnew',
                 price: 20,
-                category: 4
+                category: catId
             };
             const result = await productStore.edit(product);
             expect(result[0].name).toEqual('Testnew');
@@ -64,4 +67,4 @@ describe('Product model', () => {
             expect(result[0].name).toEqual('Testnew');
         });
     });
-})
+});
