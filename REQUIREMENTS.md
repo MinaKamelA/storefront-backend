@@ -24,7 +24,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 >`get` http://host/users/
 - [x] Show [token required]
 >`get` http://host/users/:id
-- [x] Create N[token required]
+- [x] Create N[token required] **token removed**
 >`post` http://host/users/
 ##### Additional Users Endpoints
 - Delete [token required]

@@ -72,7 +72,7 @@ const edit = async(req:express.Request, res:express.Response): Promise<void> => 
 
 users.get('/', verifyToken, index);
 users.get('/:id', verifyToken, show);
-users.post('/', verifyToken, create);
+users.post('/', create);
 users.delete('/:id', verifyToken, destroy);
 users.put('/', verifyToken, edit);
 
