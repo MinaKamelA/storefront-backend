@@ -1,0 +1,59 @@
+{
+  "name": "storefront-backend",
+  "version": "1.0.0",
+  "description": "Backend API for storefront",
+  "main": "server.js",
+  "scripts": {
+    "lint": "eslint src/**/*.ts",
+    "fix:lint": "eslint src/**/*.ts --fix",
+    "prettier": "prettier --write  **/**.ts",
+    "build": "tsc",
+    "jasmine": "jasmine",
+    "test": "set ENV=test&& db-migrate up && npm run build && npm run jasmine && db-migrate reset",
+    "start": "nodemon src/server.ts"
+  },
+  "keywords": [
+    "API",
+    "Backend",
+    "storefront"
+  ],
+  "author": "Mina Kamel",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.2",
+    "cors": "^2.8.5",
+    "db-migrate-pg": "^1.2.2",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "jasmine": "^4.0.2",
+    "jasmine-spec-reporter": "^7.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.7.3",
+    "supertest": "^6.2.2"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/body-parser": "^1.19.2",
+    "@types/cors": "^2.8.12",
+    "@types/dotenv": "^8.2.0",
+    "@types/eslint": "^8.4.1",
+    "@types/eslint-config-prettier": "^6.11.0",
+    "@types/eslint-plugin-prettier": "^3.1.0",
+    "@types/express": "^4.17.13",
+    "@types/jasmine": "^4.0.2",
+    "@types/jsonwebtoken": "^8.5.8",
+    "@types/nodemon": "^1.19.1",
+    "@types/pg": "^8.6.5",
+    "@types/prettier": "^2.4.4",
+    "@types/supertest": "^2.0.12",
+    "db-migrate": "^0.11.13",
+    "eslint": "^8.12.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.6.1",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.3"
+  }
+}
