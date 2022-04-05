@@ -35,11 +35,11 @@ describe('Order model', () => {
         });
         afterAll(async () => {
             const userStore = new UserStore();
-            userStore.delete('2');
+            userStore.delete('3');
         });
         it('should add order when call create', async () => {
             const order = {
-                made_by: 2,
+                made_by: 3,
                 status: 'ACTIVE'
             };
             const result = await orderStore.create(order);
@@ -49,21 +49,21 @@ describe('Order model', () => {
             const result = await orderStore.index();
             expect(result[0].status).toEqual('ACTIVE');
         });
-        it('should display order with id=1', async () => {
-            const result = await orderStore.show('1');
+        it('should display order with id=2', async () => {
+            const result = await orderStore.show('2');
             expect(result[0].status).toEqual('ACTIVE');
         });
-        it('should edit order with id=1', async () => {
+        it('should edit order with id=2', async () => {
             const order = {
-                id: 1,
-                made_by: 1,
+                id: 2,
+                made_by: 3,
                 status: 'COMPLETE'
             };
             const result = await orderStore.edit(order);
             expect(result[0].status).toEqual('COMPLETE');
         });
-        it('should delete order with id=1', async () => {
-            const result = await orderStore.delete('1');
+        it('should delete order with id=2', async () => {
+            const result = await orderStore.delete('2');
             expect(result[0].status).toEqual('COMPLETE');
         });
     });

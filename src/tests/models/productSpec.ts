@@ -30,13 +30,13 @@ describe('Product model', () => {
         });
         afterAll(async () => {
             const categoryStore = new CategoryStore();
-            categoryStore.delete('1');
+            categoryStore.delete('4');
         });
         it('should add product when call create', async () => {
             const product = {
                 name: 'Test',
                 price: 20,
-                category: 2
+                category: 4
             };
             const result = await productStore.create(product);
             expect(result[0].name).toEqual('Test');
@@ -45,22 +45,22 @@ describe('Product model', () => {
             const result = await productStore.index();
             expect(result[0].name).toEqual('Test');
         });
-        it('should display product with id=1', async () => {
-            const result = await productStore.show('1');
+        it('should display product with id=2', async () => {
+            const result = await productStore.show('2');
             expect(result[0].name).toEqual('Test');
         });
-        it('should edit product with id=1', async () => {
+        it('should edit product with id=2', async () => {
             const product = {
-                id: 1,
+                id: 2,
                 name: 'Testnew',
                 price: 20,
-                category: 2
+                category: 4
             };
             const result = await productStore.edit(product);
             expect(result[0].name).toEqual('Testnew');
         });
-        it('should delete product with id=1', async () => {
-            const result = await productStore.delete('1');
+        it('should delete product with id=2', async () => {
+            const result = await productStore.delete('2');
             expect(result[0].name).toEqual('Testnew');
         });
     });

@@ -89,7 +89,13 @@ This is a complete backend solution for RESTful api for storefront using postgre
 # Installation
 [(Back to top)](#table-of-contents)
 
-```npm run install```
+1. Package installation: ```npm run install```
+2. Database user creation: ```sh CREATE USER storefront_user WITH PASSWORD 'storefront_password';```
+3. Database creation: ```sh CREATE DATABASE storefront_db;
+CREATE DATABASE storefront_db_test;```
+4. Give user all privileges: ```sh GRANT ALL PRIVILEGES ON DATABASE storefront_db TO storefront_user;
+GRANT ALL PRIVILEGES ON DATABASE storefront_db_test TO storefront_user;```
+
 ---
 
 # Basic scripts
@@ -115,6 +121,11 @@ This is a complete backend solution for RESTful api for storefront using postgre
 
 1. Server port: 3000
 2. Database info: can be set on .env file
+- POSTGRES_DB= storefront_db
+- POSTGRES_DB_TEST= storefront_db_test
+- POSTGRES_USER= storefront_user
+- POSTGRES_PASSWORD= storefront_password
+- DB_PORT= 5432
 > env-example file is attached with the project with all environment variables names.
 
 ---

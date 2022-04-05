@@ -2,19 +2,28 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import UserStore from '../models/user';
 import verifyToken from '../services/verifyToken';
-import app from '../server';
 
 const store = new UserStore();
 const users = express.Router();
 
 const index = async(req:express.Request, res:express.Response): Promise<void> => {
-    const result = await store.index();
-    res.json(result);
+    try {
+        const result = await store.index();
+        res.json(result);
+    } catch (err) {
+        res.status(400);
+        res.json(err);
+    }
 }
 
 const show=async (req:express.Request, res:express.Response): Promise<void> => {
-    const result = await store.show(req.params.id);
-    res.json(result);
+    try {
+        const result = await store.show(req.params.id);
+        res.json(result);
+    } catch (err) {
+        res.status(400);
+        res.json(err);   
+    }
 }
 
 const create=async (req:express.Request, res:express.Response): Promise<void> => {
@@ -32,20 +41,24 @@ const create=async (req:express.Request, res:express.Response): Promise<void> =>
         }
         res.json(resResult);
     }catch(err){
-        console.log(err);
         res.status(400);
         res.json(err);
     }
 }
 
 const destroy =async(req:express.Request, res:express.Response): Promise<void> => {
-    if(req.params.id !== req.userId){
-        res.status(403);
-        res.json(`403: Forbidden`);
-        return;
+    try {
+        if(req.params.id !== req.userId){
+            res.status(403);
+            res.json(`403: Forbidden`);
+            return;
+        }
+        const result = await store.delete(req.params.id);
+        res.json(result);
+    } catch (err) {
+        res.status(400);
+        res.json(err);   
     }
-    const result = await store.delete(req.params.id);
-    res.json(result);
 }
 
 const edit = async(req:express.Request, res:express.Response): Promise<void> => {

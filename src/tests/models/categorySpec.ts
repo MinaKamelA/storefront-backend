@@ -26,39 +26,39 @@ describe('Category model', () => {
             };
             const result = await categoryStore.create(category);
             expect(result).toEqual([{
-                id: 1,
+                id: 3,
                 name: 'test'
             }]);
         });
         it('should display all categories', async () => {
             const result = await categoryStore.index();
             expect(result).toEqual([{
-                id: 1,
+                id: 3,
                 name: 'test'
             }]);
         });
-        it('should display category with id=1', async () => {
-            const result = await categoryStore.show('1');
+        it('should display category with id=3', async () => {
+            const result = await categoryStore.show('3');
             expect(result).toEqual([{
-                id: 1,
+                id: 3,
                 name: 'test'
             }]);
         });
-        it('should edit category with id=1', async () => {
+        it('should edit category with id=3', async () => {
             const category = {
-                id: 1,
+                id: 3,
                 name: 'new test'
             };
             const result = await categoryStore.edit(category);
             expect(result).toEqual([{
-                id: 1,
+                id: 3,
                 name: 'new test'
             }]);
         });
-        it('should delete category with id=1', async () => {
-            const result = await categoryStore.delete('1');
+        it('should delete category with id=3', async () => {
+            const result = await categoryStore.delete('3');
             expect(result).toEqual([{
-                id: 1,
+                id: 3,
                 name: 'new test'
             }]);
         });

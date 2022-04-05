@@ -6,13 +6,23 @@ const store = new ProductStore();
 const products = express.Router();
 
 const index = async (req:express.Request, res:express.Response): Promise<void> => {
-    const result = await store.index();
-    res.json(result);
+    try {
+        const result = await store.index();
+        res.json(result);
+    } catch (err) {
+        res.status(400);
+        res.json(err);
+    }
 }
 
 const show =async (req:express.Request, res:express.Response): Promise<void> => {
-    const result = await store.show(req.params.id);
-    res.json(result);
+    try {
+        const result = await store.show(req.params.id);
+        res.json(result);
+    } catch (err) {
+        res.status(400);
+        res.json(err);
+    }
 }
 
 const create =async (req:express.Request, res:express.Response): Promise<void> => {
@@ -31,8 +41,13 @@ const create =async (req:express.Request, res:express.Response): Promise<void> =
 }
 
 const destroy =async(req:express.Request, res:express.Response): Promise<void> => {
-    const result = await store.delete(req.params.id);
-    res.json(result);
+    try {
+        const result = await store.delete(req.params.id);
+        res.json(result);
+    } catch (err) {
+        res.status(400);
+        res.json(err);
+    }
 }
 
 const update =async (req:express.Request, res:express.Response): Promise<void> => {
